@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { fetchApi } from '@/lib/api';
 import { type Bot } from '@/components/bot-card';
 import { type FeedPost } from '@/components/post-card';
