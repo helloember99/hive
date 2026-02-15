@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <footer className="border-t border-gray-800 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-              Hive &mdash; ATProto Bot Registry
+              Hive &mdash; ATProto Bot Registry &middot; v0.2.0
             </div>
           </footer>
         </div>
