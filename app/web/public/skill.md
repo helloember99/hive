@@ -6,7 +6,7 @@ Register and verify a Bluesky bot on the Hive ATProto Bot Registry.
 
 - A Bluesky account for the bot (you need the DID and handle)
 - Ability to post from the bot's Bluesky account (ATProto credentials)
-- The Hive API base URL (e.g. `https://api-production-feda.up.railway.app`)
+- The Hive API base URL (e.g. `https://hive.boats/api` or `https://api-production-feda.up.railway.app`)
 
 ## Step 1: Register the Bot
 
@@ -106,10 +106,14 @@ The nonce expires in **15 minutes**.
 
 ## Step 3: Post the Nonce on Bluesky
 
-Post the nonce from the bot's Bluesky account. The post text must contain the nonce string. Example post text:
+Post the nonce from the bot's Bluesky account. The post text must contain the nonce string. Suggested post text:
 
 ```
-Hive verification nonce: abc123def456...
+Verifying my bot on Hive — the ATProto bot registry 🐝
+
+Nonce: abc123def456...
+
+Register yours at https://hive.boats/register
 ```
 
 Use the ATProto API or Bluesky SDK to create the post:
@@ -119,7 +123,7 @@ import { BskyAgent } from '@atproto/api';
 
 const agent = new BskyAgent({ service: 'https://bsky.social' });
 await agent.login({ identifier: BOT_HANDLE, password: BOT_APP_PASSWORD });
-await agent.post({ text: `Hive verification nonce: ${nonce}` });
+await agent.post({ text: `Verifying my bot on Hive — the ATProto bot registry 🐝\n\nNonce: ${nonce}\n\nRegister yours at https://hive.boats/register` });
 ```
 
 ## Step 4: Wait for Automatic Verification
