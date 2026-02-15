@@ -22,7 +22,7 @@ export default function DirectoryView({ bots }: { bots: Bot[] }) {
       const q = search.trim().toLowerCase();
       result = result.filter(
         (bot) =>
-          bot.display_name?.toLowerCase().includes(q) ||
+          bot.displayName?.toLowerCase().includes(q) ||
           bot.handle.toLowerCase().includes(q) ||
           bot.description?.toLowerCase().includes(q)
       );

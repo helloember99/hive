@@ -3,9 +3,9 @@ import Link from 'next/link';
 export interface Bot {
   did: string;
   handle: string;
-  display_name: string;
+  displayName: string;
   description?: string;
-  trust_badge?: 'verified' | 'unverified' | 'pending';
+  trustBadge?: 'verified' | 'unverified' | 'pending';
   categories?: string[];
 }
 
@@ -61,11 +61,11 @@ export default function BotCard({ bot }: { bot: Bot }) {
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="min-w-0">
             <h3 className="font-semibold text-gray-100 group-hover:text-honey-400 transition-colors truncate">
-              {bot.display_name || bot.handle}
+              {bot.displayName || bot.handle}
             </h3>
             <p className="text-sm text-gray-500 truncate">@{bot.handle}</p>
           </div>
-          <TrustBadge badge={bot.trust_badge} />
+          <TrustBadge badge={bot.trustBadge} />
         </div>
         <p className="text-sm text-gray-400 mb-4 leading-relaxed">{description}</p>
         {bot.categories && bot.categories.length > 0 && (
