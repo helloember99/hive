@@ -157,6 +157,7 @@ export default async function (fastify: FastifyInstance) {
         operatorEmail: operator_email ?? null,
         categories: categories ?? [],
         manifestUrl: manifest_url ?? null,
+        listingStatus: 'active',
       })
       .returning();
 
