@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import pkg from '../../../package.json';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -56,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <footer className="border-t border-gray-800 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-              Hive &mdash; ATProto Bot Registry &middot; v0.2.0
+              Hive &mdash; ATProto Bot Registry &middot; v{pkg.version}
             </div>
           </footer>
         </div>
