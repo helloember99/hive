@@ -24,7 +24,7 @@ export const bots = pgTable('bots', {
   categories: jsonb('categories').default([]),
   manifestUrl: varchar('manifest_url', { length: 1024 }),
   listingStatus: varchar('listing_status', { length: 20 }).default('draft'),
-  trustBadge: varchar('trust_badge', { length: 20 }).default('none'),
+  trustBadge: varchar('trust_badge', { length: 20 }).default('unverified'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });

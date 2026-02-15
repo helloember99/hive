@@ -83,7 +83,7 @@
           "type": "varchar(20)",
           "primaryKey": false,
           "notNull": false,
-          "default": "'none'"
+          "default": "'unverified'"
         },
         "created_at": {
           "name": "created_at",

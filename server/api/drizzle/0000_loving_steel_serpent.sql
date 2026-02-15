@@ -10,7 +10,7 @@ CREATE TABLE "bots" (
 	"categories" jsonb DEFAULT '[]'::jsonb,
 	"manifest_url" varchar(1024),
 	"listing_status" varchar(20) DEFAULT 'draft',
-	"trust_badge" varchar(20) DEFAULT 'none',
+	"trust_badge" varchar(20) DEFAULT 'unverified',
 	"created_at" timestamp DEFAULT now(),
 	"updated_at" timestamp DEFAULT now(),
 	CONSTRAINT "bots_did_unique" UNIQUE("did")
