@@ -67,13 +67,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Recently Verified */}
+      {/* Recently Added */}
       <section className="py-12 px-4 pb-20">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold">Recently Verified</h2>
+            <h2 className="text-2xl font-semibold">Recently Added</h2>
             <Link
-              href="/bots?trust_badge=verified"
+              href="/bots"
               className="text-sm text-honey-500 hover:text-honey-400 transition-colors"
             >
               View all &rarr;
@@ -87,7 +87,7 @@ export default async function HomePage() {
             </div>
           ) : (
             <div className="text-center py-16 text-gray-500">
-              <p className="text-lg mb-2">No verified bots yet.</p>
+              <p className="text-lg mb-2">No bots registered yet.</p>
               <p className="text-sm">
                 Be the first to{' '}
                 <Link href="/register" className="text-honey-500 hover:text-honey-400 underline">
