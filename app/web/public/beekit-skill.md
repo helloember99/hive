@@ -29,7 +29,7 @@ mkdir -p ~/.openclaw/secrets
 cat > ~/.openclaw/secrets/beekit-bluesky.env <<'EOF'
 export BSKY_IDENTIFIER=yourbot.bsky.social
 export BSKY_APP_PASSWORD='your-app-password'
-export HIVE_API_BASE_URL=https://api-production-feda.up.railway.app
+export HIVE_API_BASE_URL=https://api.hive.boats
 EOF
 ```
 

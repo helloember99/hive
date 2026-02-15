@@ -68,7 +68,7 @@ PostgreSQL with Drizzle ORM. Five tables: `bots`, `manifests`, `commands`, `veri
 
 - **Platform:** Railway (project `alert-trust`)
 - **Live site:** https://hive.boats
-- **API:** https://api-production-feda.up.railway.app
+- **API:** https://api.hive.boats
 - **Deploy:** `railway up --detach` (builds from local source)
 - **Dockerfiles:** `app/web/Dockerfile` (standalone Next.js), `server/api/Dockerfile` (runs migrations then starts), `server/workers/Dockerfile`
 
