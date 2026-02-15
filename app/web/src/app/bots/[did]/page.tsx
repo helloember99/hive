@@ -12,25 +12,24 @@ interface Command {
 interface BotDetail {
   did: string;
   handle: string;
-  display_name: string;
+  displayName: string;
   description?: string;
-  trust_badge?: 'verified' | 'unverified' | 'pending';
+  trustBadge?: 'verified' | 'unverified' | 'pending';
   categories?: string[];
-  operator?: {
-    name: string;
-    email?: string;
-  };
+  operatorName?: string | null;
+  operatorEmail?: string | null;
   commands?: Command[];
-  capabilities?: string[];
-  interaction_modes?: string[];
-  manifest_url?: string;
-  manifest_schema_version?: string;
-  manifest_last_validated?: string;
-  manifest_errors?: string[];
+  manifestUrl?: string;
+  manifest?: {
+    schemaVersion?: string;
+    validatedAt?: string | null;
+    errors?: string[];
+    interactionModes?: string[];
+  };
   reputation?: {
     responsiveness?: number;
     completeness?: number;
-  };
+  } | null;
 }
 
 export default async function BotDetailPage({
@@ -78,11 +77,11 @@ export default async function BotDetailPage({
         </Link>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">{bot.display_name || bot.handle}</h1>
+            <h1 className="text-3xl font-bold">{bot.displayName || bot.handle}</h1>
             <p className="text-gray-400 mt-1">@{bot.handle}</p>
             <p className="text-xs text-gray-600 font-mono mt-1">{bot.did}</p>
           </div>
-          <TrustBadgeLarge badge={bot.trust_badge} />
+          <TrustBadgeLarge badge={bot.trustBadge} />
         </div>
         {bot.description && (
           <p className="text-gray-300 mt-4 leading-relaxed">{bot.description}</p>
@@ -133,39 +132,20 @@ export default async function BotDetailPage({
             </section>
           )}
 
-          {/* Capabilities & Interaction Modes */}
-          {((bot.capabilities && bot.capabilities.length > 0) ||
-            (bot.interaction_modes && bot.interaction_modes.length > 0)) && (
+          {/* Interaction Modes */}
+          {bot.manifest?.interactionModes && bot.manifest.interactionModes.length > 0 && (
             <section className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-              <h2 className="text-lg font-semibold mb-4">Capabilities</h2>
-              {bot.capabilities && bot.capabilities.length > 0 && (
-                <div className="mb-4">
-                  <h3 className="text-sm font-medium text-gray-400 mb-2">Features</h3>
-                  <ul className="space-y-1">
-                    {bot.capabilities.map((cap) => (
-                      <li key={cap} className="text-sm text-gray-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-honey-500 rounded-full shrink-0" />
-                        {cap}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {bot.interaction_modes && bot.interaction_modes.length > 0 && (
-                <div>
-                  <h3 className="text-sm font-medium text-gray-400 mb-2">Interaction Modes</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {bot.interaction_modes.map((mode) => (
-                      <span
-                        key={mode}
-                        className="px-2.5 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
-                      >
-                        {mode}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <h2 className="text-lg font-semibold mb-4">Interaction Modes</h2>
+              <div className="flex flex-wrap gap-2">
+                {bot.manifest.interactionModes.map((mode) => (
+                  <span
+                    key={mode}
+                    className="px-2.5 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
+                  >
+                    {mode}
+                  </span>
+                ))}
+              </div>
             </section>
           )}
         </div>
@@ -173,12 +153,12 @@ export default async function BotDetailPage({
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Operator */}
-          {bot.operator && (
+          {(bot.operatorName || bot.operatorEmail) && (
             <section className="bg-gray-900 border border-gray-800 rounded-xl p-6">
               <h2 className="text-lg font-semibold mb-3">Operator</h2>
-              <p className="text-sm text-gray-300">{bot.operator.name}</p>
-              {bot.operator.email && (
-                <p className="text-sm text-gray-500 mt-1">{bot.operator.email}</p>
+              {bot.operatorName && <p className="text-sm text-gray-300">{bot.operatorName}</p>}
+              {bot.operatorEmail && (
+                <p className="text-sm text-gray-500 mt-1">{bot.operatorEmail}</p>
               )}
             </section>
           )}
@@ -190,41 +170,41 @@ export default async function BotDetailPage({
           <section className="bg-gray-900 border border-gray-800 rounded-xl p-6">
             <h2 className="text-lg font-semibold mb-3">Manifest</h2>
             <dl className="space-y-2 text-sm">
-              {bot.manifest_schema_version && (
+              {bot.manifest?.schemaVersion && (
                 <div>
                   <dt className="text-gray-500">Schema Version</dt>
-                  <dd className="text-gray-300">{bot.manifest_schema_version}</dd>
+                  <dd className="text-gray-300">{bot.manifest.schemaVersion}</dd>
                 </div>
               )}
-              {bot.manifest_last_validated && (
+              {bot.manifest?.validatedAt && (
                 <div>
                   <dt className="text-gray-500">Last Validated</dt>
                   <dd className="text-gray-300">
-                    {new Date(bot.manifest_last_validated).toLocaleDateString()}
+                    {new Date(bot.manifest.validatedAt).toLocaleDateString()}
                   </dd>
                 </div>
               )}
-              {bot.manifest_url && (
+              {bot.manifestUrl && (
                 <div>
                   <dt className="text-gray-500">Manifest URL</dt>
                   <dd>
                     <a
-                      href={bot.manifest_url}
+                      href={bot.manifestUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-honey-500 hover:text-honey-400 underline break-all text-xs"
                     >
-                      {bot.manifest_url}
+                      {bot.manifestUrl}
                     </a>
                   </dd>
                 </div>
               )}
             </dl>
-            {bot.manifest_errors && bot.manifest_errors.length > 0 && (
+            {bot.manifest?.errors && bot.manifest.errors.length > 0 && (
               <div className="mt-3 p-3 bg-red-950/30 border border-red-900/50 rounded-lg">
                 <p className="text-xs font-medium text-red-400 mb-1">Validation Errors</p>
                 <ul className="space-y-0.5">
-                  {bot.manifest_errors.map((err, i) => (
+                  {bot.manifest.errors.map((err, i) => (
                     <li key={i} className="text-xs text-red-300">
                       {err}
                     </li>
