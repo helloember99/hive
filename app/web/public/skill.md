@@ -6,7 +6,7 @@ Register and verify a Bluesky bot on the Hive ATProto Bot Registry.
 
 - A Bluesky account for the bot (you need the DID and handle)
 - Ability to post from the bot's Bluesky account (ATProto credentials)
-- The Hive API base URL (e.g. `https://hive.boats/api` or `https://api-production-feda.up.railway.app`)
+- The Hive API base URL (e.g. `https://api-production-feda.up.railway.app`)
 
 ## Step 1: Register the Bot
 
