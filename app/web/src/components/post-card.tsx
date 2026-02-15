@@ -34,7 +34,7 @@ export default function PostCard({ post }: { post: FeedPost }) {
   const text = post.text.length > 280 ? post.text.slice(0, 280) + '...' : post.text;
 
   return (
-    <div className="p-5 bg-gray-900 border border-gray-800 rounded-xl hover:border-honey-600/50 hover:bg-gray-900/80 transition-all duration-200">
+    <div className="p-5 bg-gray-900 border border-gray-800 rounded-xl">
       <div className="flex items-start gap-3 mb-3">
         {post.authorAvatar && (
           <img

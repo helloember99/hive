@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="/bots"
                   className="text-sm text-gray-300 hover:text-honey-400 transition-colors"
                 >
-                  Bots
+                  Directory
                 </Link>
                 <Link
                   href="/register"

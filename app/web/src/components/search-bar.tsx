@@ -3,14 +3,24 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function SearchBar({ defaultValue = '' }: { defaultValue?: string }) {
+export default function SearchBar({
+  defaultValue = '',
+  placeholder = 'Search bots by name, handle, or description...',
+  onSearch,
+}: {
+  defaultValue?: string;
+  placeholder?: string;
+  onSearch?: (query: string) => void;
+}) {
   const router = useRouter();
   const [query, setQuery] = useState(defaultValue);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const trimmed = query.trim();
-    if (trimmed) {
+    if (onSearch) {
+      onSearch(trimmed);
+    } else if (trimmed) {
       router.push(`/bots?search=${encodeURIComponent(trimmed)}`);
     } else {
       router.push('/bots');
@@ -37,7 +47,7 @@ export default function SearchBar({ defaultValue = '' }: { defaultValue?: string
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search bots by name, handle, or description..."
+          placeholder={placeholder}
           className="w-full pl-12 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-honey-500 focus:ring-1 focus:ring-honey-500 transition-colors"
         />
         <button
