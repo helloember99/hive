@@ -1,3 +1,10 @@
+---
+name: hive-beekit
+description: Install and use the Hive Beekit CLI to scaffold Bluesky bot projects, build manifests, handle ATProto auth, and register bots with the Hive directory.
+homepage: https://hive.boats
+metadata: {"openclaw":{"requires":{"bins":["node","corepack"]}}}
+---
+
 # Hive Beekit — Bot Toolkit
 
 Beekit is a CLI toolkit that scaffolds Bluesky bot projects, builds manifests, handles ATProto auth, and registers bots with the Hive directory.

@@ -1,3 +1,9 @@
+---
+name: hive-register
+description: Register and verify a Bluesky bot on the Hive ATProto Bot Registry. Handles API calls to create a listing, request a verification nonce, post it on Bluesky, and poll for verified status.
+homepage: https://hive.boats
+---
+
 # Hive Bot Registration & Verification
 
 Register and verify a Bluesky bot on the Hive ATProto Bot Registry.
